@@ -32,6 +32,10 @@ let XML_END = `
 	        		
 `;
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
 
 /*============================================================================
     Query
@@ -94,7 +98,7 @@ function processList(lists){
 
             let pushObj = {
                 "name_eng" : lists[i][j].anime.title_english,
-                "list_status" : capitalize(lists[i][j].list_status),
+                "list_status" : processWatchStatus(lists[i][j].list_status),
                 "score" : Math.floor(lists[i][j].score),
                 "episodes_watched" : lists[i][j].episodes_watched,
                 "comments" : lists[i][j].notes || "",
@@ -144,9 +148,51 @@ function prettify(input){
     return JSON.stringify(input, null, 4);
 }
 
-function capitalize(input){
-    return "" + input.toString().charAt(0).toUpperCase() + input.toString().substring(1);
+// function capitalize(input){
+//     return "" + input.toString().charAt(0).toUpperCase() + input.toString().substring(1);
+// }
+
+// function capitalizeAll(input){
+//     let newArr = [];
+
+//     for (i in input){
+//         if (input[i].toLowerCase().includes("to")){
+
+//         } else{
+//             newArr.push(capitalize(input[i]));
+//         }
+//     }
+
+//     return newArr;
+// }
+
+function processWatchStatus(input){
+    // let splitArray = [];
+    // let returnMe = "";
+
+    // if (input.includes(" ")){
+    //     splitArray = input.split(" "); 
+    //     splitArray = capitalizeAll(splitArray);
+    //     splitArray = splitArray.join(" ");
+    // } 
+    // if (input.includes("-")){
+    //     splitArray = input.split("-"); 
+    //     splitArray = capitalizeAll(splitArray);
+    //     splitArray = splitArray.join("-");
+    // }
+
+    // returnMe = splitArray;
+    // return returnMe;
+    input = input.replaceAll("plan to watch", "Plan to Watch");
+    input = input.replaceAll("on-hold", "On-Hold");
+    input = input.replaceAll("dropped", "Dropped");
+    input = input.replaceAll("completed", "Completed");
+
+    return input;
 }
+
+var str = "Hello world, welcome to the universe.";
+var n = str.includes("world");
 
 /*============================================================================
     Run
