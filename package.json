@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "unirest": "^0.5.1"
+    "limiter": "^1.1.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3",
+    "unirest": "^0.5.1",
+    "xml2js": "^0.4.17"
   }
 }

@@ -35,23 +35,19 @@ When in the directory, just run
 If your config is set correctly, all your anime will be exported into an
 MAL-compatible XML file at `datafiles/anilist.xml`
 
-### The hard part!
+### Grabbing Anime ID's from MAL
 
-This is where the manual hard labour comes in. You will notice that in
-`datafiles/anilist.xml`, each anime entry contains a `REPLACE_ME` value
-for `<series_animedb_id></series_animedb_id>` tags.
+You will need to resolve the anime names to MAL id numbers. Thankfully, I have 
+a script which will do this for you. Simply run 
 
-You will need to
-- Search the name of each anime
-- Replace the REPLACE_ME value in each tag with the correct AniDB ID
-corresponding to the anime name.
+	$ node tester
 
-Some notes:
-- You can find this ID in the url bar of any anime on MAL. Just click
-on the anime / hover over a link to an anime page and you will see
-the URL contains the correct ID.
+This will take some time, as requests can only be made at a limited rate.
 
-Happy linking!
+Your output will be available at `./datafiles/conversion.xml`, and this is 
+the file you should upload to MyAnimeList. 
+
+Enjoy!
 
 ### PS
 

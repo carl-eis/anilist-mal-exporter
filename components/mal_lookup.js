@@ -4,6 +4,7 @@
 let unirest = require("unirest");
 const fs = require("fs");
 const CONFIG = require("../config.json");
+const xml2js = require("xml2js");
 
 /*============================================================================
     Functions
@@ -14,6 +15,10 @@ function main(){
 }
 
 function lookupId(input, callback){
+    callback("11111");
+}
+
+function lookupIdES5(input, callback){
     let req = unirest("GET", "https://myanimelist.net/api/anime/search.xml");
 
     req.query({
@@ -27,20 +32,32 @@ function lookupId(input, callback){
     });
 
     req.end(function (res) {
-        if (res.error) throw new Error(res.error);
+        if (res.error) {
 
-        console.log(res.body);
-        // callback(res.body);
+        }
+            //throw new Error(res.error);
+
+        // console.log(res.body);
+        xml2js.parseString(res.body, function (err, result) {
+            let json = result;
+            // console.log("PRINTING RAW: " + JSON.stringify(json, null, 4));
+            if (result === undefined){
+                console.log("UNDEFINED!!!");
+                callback("REPLACE_ME");
+            } else{
+                callback(result.anime.entry[0].id);
+            }
+        });
     });
 }
 
 function createBasicAuth(){
-    console.log(new Buffer("Hello World").toString('base64'));
+    // console.log(new Buffer("Hello World").toString('base64'));
 
     let encString = CONFIG.MAL_USER_NAME + ":" + CONFIG.MAL_PASSWORD;
-    return"Basic " + (new Buffer(encString).toString('base64'));
+    return "Basic " + (new Buffer(encString).toString('base64'));
 }
 
 module.exports = {
-    lookupId: lookupId
+    lookupId: lookupIdES5
 };
