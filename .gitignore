@@ -3,5 +3,6 @@ datafiles/anilist.xml
 datafiles/anilist.json
 datafiles/anilist_BACKUP.xml
 datafiles/anilist_full_req
+datafiles/
 node_modules/
 .idea/
