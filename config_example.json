@@ -1,6 +1,7 @@
 {
-    "MAL_USER_ID" : "123456",
-    "MAL_USER_NAME" : "your_MAL_username",
+    "MAL_USER_ID" : "your_MAL_profile_name",
+    "MAL_USER_NAME" : "your_MAL_login_username",
+    "MAL_USER_PASSWORD" : "your_MAL_account_password",
     "ANILIST_CLIENT_ID" : "get_this_from_API_settings",
     "ANILIST_CLIENT_SECRET" : "get_this_from_API_settings",
     "ANILIST_USER_DISPLAY_NAME" : "Rawrinator"
