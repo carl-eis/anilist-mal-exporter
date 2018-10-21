@@ -6,3 +6,5 @@ datafiles/anilist_full_req
 datafiles/
 node_modules/
 .idea/
+build/
+yarn-error.log
